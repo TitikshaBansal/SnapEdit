@@ -1,11 +1,10 @@
 var tl = gsap.timeline();
 var tl1 = gsap.timeline();
+
 tl1.to(".wrapper ", {
-
     opacity: 1,
-
-
 });
+
 tl1.to("#loader h1", {
     delay: 0.9,
     duration: 1,
@@ -18,23 +17,17 @@ tl1.to("#loader", {
     duration: 1.5,
 });
 
-
-
 tl1.from("nav a ", {
     y: -80,
     opacity: 0,
     duration: 0.8,
     delay: 0.5
-
 })
-
 
 tl1.from("#page1 h1", {
     x: -500,
     opacity: 0,
     duration: 0.8,
-
-
 })
 
 tl1.from(".container", {
@@ -57,7 +50,6 @@ function time() {
     }, 150);
 }
 
-
 tl.to("#page1 h1 ", {
     transform: "translateX(-100%)",
     fontWeight: "100",
@@ -71,7 +63,6 @@ tl.to("#page1 h1 ", {
     },
 });
 
-
 const fileInput = document.querySelector(".file-input"),
     filterOptions = document.querySelectorAll(".filter button"),
     filterName = document.querySelector(".filter-info .name"),
@@ -83,7 +74,7 @@ const fileInput = document.querySelector(".file-input"),
     chooseImgBtn = document.querySelector(".choose-img"),
     saveImgBtn = document.querySelector(".save-img");
 
-let brightness = "100", saturation = "100", inversion = "0", grayscale = "0";
+let brightness = "100", saturation = "100", inversion = "0", grayscale = "0", blur = "0", contrast = "100";
 let rotate = 0, flipHorizontal = 1, flipVertical = 1;
 
 const loadImage = () => {
@@ -98,7 +89,7 @@ const loadImage = () => {
 
 const applyFilter = () => {
     previewImg.style.transform = `rotate(${rotate}deg) scale(${flipHorizontal}, ${flipVertical})`;
-    previewImg.style.filter = `brightness(${brightness}%) saturate(${saturation}%) invert(${inversion}%) grayscale(${grayscale}%)`;
+    previewImg.style.filter = `brightness(${brightness}%) saturate(${saturation}%) invert(${inversion}%) grayscale(${grayscale}%) blur(${blur}px) contrast(${contrast}%)`;
 }
 
 filterOptions.forEach(option => {
@@ -119,6 +110,14 @@ filterOptions.forEach(option => {
             filterSlider.max = "100";
             filterSlider.value = inversion;
             filterValue.innerText = `${inversion}%`;
+        } else if (option.id === "blur") { 
+            filterSlider.max = "10"; // Max blur value (in pixels)
+            filterSlider.value = blur;
+            filterValue.innerText = `${blur}px`;
+        } else if (option.id === "contrast") { // Contrast case
+            filterSlider.max = "200";
+            filterSlider.value = contrast;
+            filterValue.innerText = `${contrast}%`;
         } else {
             filterSlider.max = "100";
             filterSlider.value = grayscale;
@@ -137,6 +136,11 @@ const updateFilter = () => {
         saturation = filterSlider.value;
     } else if (selectedFilter.id === "inversion") {
         inversion = filterSlider.value;
+    } else if (selectedFilter.id === "blur") { // Handle blur value
+        blur = filterSlider.value;
+        filterValue.innerText = `${blur}px`; // Show blur in pixels
+    } else if (selectedFilter.id === "contrast") { // Handle contrast value
+        contrast = filterSlider.value;
     } else {
         grayscale = filterSlider.value;
     }
@@ -159,7 +163,7 @@ rotateOptions.forEach(option => {
 });
 
 const resetFilter = () => {
-    brightness = "100"; saturation = "100"; inversion = "0"; grayscale = "0";
+    brightness = "100"; saturation = "100"; inversion = "0"; grayscale = "0", blur = "0", contrast = "100";
     rotate = 0; flipHorizontal = 1; flipVertical = 1;
     filterOptions[0].click();
     applyFilter();
@@ -171,7 +175,7 @@ const saveImage = () => {
     canvas.width = previewImg.naturalWidth;
     canvas.height = previewImg.naturalHeight;
 
-    ctx.filter = `brightness(${brightness}%) saturate(${saturation}%) invert(${inversion}%) grayscale(${grayscale}%)`;
+    ctx.filter = `brightness(${brightness}%) saturate(${saturation}%) invert(${inversion}%) grayscale(${grayscale}%) blur(${blur}px) contrast(${contrast}%)`;
     ctx.translate(canvas.width / 2, canvas.height / 2);
     if (rotate !== 0) {
         ctx.rotate(rotate * Math.PI / 180);
@@ -190,85 +194,3 @@ resetFilterBtn.addEventListener("click", resetFilter);
 saveImgBtn.addEventListener("click", saveImage);
 fileInput.addEventListener("change", loadImage);
 chooseImgBtn.addEventListener("click", () => fileInput.click());
-
-
-
-
-
-gsap.to(".box1", {
-    y: "-100px",
-    repeat: -1,
-    delay: 0,
-    color: "white",
-    duration: 1.2,
-    ease: "liner",
-    borderRadius: 1,
-    rotation: 360,
-
-
-    yoyo: true,
-    stagger: 1,
-});
-gsap.to(".box2", {
-    y: "-100px",
-    repeat: -1,
-    delay: 0,
-    color: "white",
-    duration: 1.2,
-    ease: "liner",
-    borderRadius: 1,
-    rotation: 360,
-
-    yoyo: true,
-    stagger: 1,
-});
-gsap.to(".box3", {
-    y: "-100px",
-    repeat: -1,
-    delay: 0,
-    color: "white",
-    duration: 1.2,
-    ease: "liner",
-    borderRadius: 1,
-    rotation: 360,
-    yoyo: true,
-    stagger: 1,
-});
-gsap.to(".box4", {
-    y: "-100px",
-    repeat: -1,
-    delay: 0,
-    color: "white",
-    duration: 1.2,
-    ease: "liner",
-    borderRadius: 1,
-    rotation: 360,
-    yoyo: true,
-    stagger: 1,
-});
-gsap.to(".box5", {
-    y: "-100px",
-
-    repeat: -1,
-    delay: 0,
-    color: "white",
-    duration: 1.2,
-    ease: "liner",
-    borderRadius: 1,
-    rotation: 360,
-    yoyo: true,
-    stagger: 1,
-});
-gsap.to(".box6", {
-    y: "-100px",
-    repeat: -1,
-    delay: 0,
-    color: "white",
-    duration: 1.2,
-    ease: "liner",
-    borderRadius: 1,
-    rotation: 360,
-    yoyo: true,
-    stagger: 1,
-});
-
