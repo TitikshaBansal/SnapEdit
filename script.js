@@ -6,13 +6,13 @@ tl1.to(".wrapper ", {
 
 
 });
-tl1.to("#loder h1", {
+tl1.to("#loader h1", {
     delay: 0.9,
     duration: 1,
     onStart: time(),
 });
 
-tl1.to("#loder", {
+tl1.to("#loader", {
     top: "-100vh",
     delay: 0.5,
     duration: 1.5,
@@ -49,10 +49,10 @@ function time() {
         a = a + Math.floor(Math.random() * 15);
 
         if (a < 100) {
-            document.querySelector("#loder h1").innerHTML = a + "%";
+            document.querySelector("#loader h1").innerHTML = a + "%";
         } else {
             a = 100;
-            document.querySelector("#loder h1").innerHTML = a + "%";
+            document.querySelector("#loader h1").innerHTML = a + "%";
         }
     }, 150);
 }
